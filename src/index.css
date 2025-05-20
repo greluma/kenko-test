@@ -1,5 +1,5 @@
-@import 'tailwindcss';
 @import '@fontsource/inter';
+@import 'tailwindcss';
 
 @theme {
   /* Fuente */
@@ -11,6 +11,8 @@
   --color-k-blue-700: #174562;
   --color-k-blue-800: #0c2a3e;
   --color-k-blue-900: #0c141b;
+  --shadow-custom: inset 0 4px 6px rgba(0, 0, 0, 0.3),
+    inset 0 -2px 4px rgba(255, 255, 255, 0.1);
 }
 
 @layer base {
