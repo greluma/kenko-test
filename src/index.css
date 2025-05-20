@@ -1,0 +1,20 @@
+@import 'tailwindcss';
+@import '@fontsource/inter';
+
+@theme {
+  /* Fuente */
+  --font-sans: 'Inter', 'Inter Placeholder', sans-serif;
+  /* Colores */
+  --color-k-white: #ffffff;
+  --color-k-blue-100: #38b6ff;
+  --color-k-blue-300: #0aa5ff;
+  --color-k-blue-700: #174562;
+  --color-k-blue-800: #0c2a3e;
+  --color-k-blue-900: #0c141b;
+}
+
+@layer base {
+  html {
+    @apply font-sans;
+  }
+}
