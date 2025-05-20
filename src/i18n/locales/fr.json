@@ -1,4 +1,8 @@
 {
   "welcome": "Bienvenue dans l'application !",
-  "hello": "Bonjour, {{name}} !"
+  "hello": "Bonjour, {{name}} !",
+  "modalTitles": {
+    "inbox": "Billets",
+    "archived": "Archivé"
+  }
 }

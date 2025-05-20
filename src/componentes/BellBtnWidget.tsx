@@ -4,7 +4,13 @@ import { FaRegBell } from 'react-icons/fa6';
 
 // ! Updates: Bell effect, constrains parameters, diferenciar evento onClick de drag y onMouseUp/Down
 
-export default function BellBtnWidget() {
+export default function BellBtnWidget({
+  openModal,
+  isModalOpen,
+}: Readonly<{
+  openModal: () => void;
+  isModalOpen: boolean;
+}>) {
   const controls = useDragControls();
   const [position, setPosition] = useState({ x: 0, y: 0 });
   const [isDrag, setIsDrag] = useState<boolean>(false);
@@ -26,7 +32,7 @@ export default function BellBtnWidget() {
   }, []);
 
   return (
-    <div>
+    <div className={`${isModalOpen ? 'hidden' : ''}`}>
       <motion.div
         onDragStart={() => setIsDrag(true)}
         onPointerDown={() => setIsDrag(true)}
@@ -46,9 +52,7 @@ export default function BellBtnWidget() {
         <button
           className="cursor-grab"
           onPointerDown={(e) => controls.start(e)}
-          onClick={() => {
-            console.log('hola');
-          }}
+          onClick={openModal}
         >
           <span className="text-3xl text-k-blue-800">
             <FaRegBell />

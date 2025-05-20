@@ -1,4 +1,8 @@
 {
   "welcome": "¡Bienvenido a la app!",
-  "hello": "¡Hola, {{name}}!"
+  "hello": "¡Hola, {{name}}!",
+  "modalTitles": {
+    "inbox": "Entradas",
+    "archived": "Archivadas"
+  }
 }
