@@ -1,9 +1,10 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { CiRead } from 'react-icons/ci';
 import { MdDeleteOutline } from 'react-icons/md';
 import { RiArchiveDrawerLine } from 'react-icons/ri';
 import { IoIosArrowBack } from 'react-icons/io';
 import { IoIosArrowForward } from 'react-icons/io';
+import { CiUnread } from 'react-icons/ci';
 import { useTranslation } from 'react-i18next';
 
 export interface NotificationsInterface {
@@ -19,14 +20,22 @@ type EstadoNotificacion = 0 | 1 | 2;
 
 interface ModalBodyProps {
   lista: NotificationsInterface[];
+  actualSection: string;
 }
 
-export default function ModalBody({ lista }: Readonly<ModalBodyProps>) {
+export default function ModalBody({
+  lista,
+  actualSection,
+}: Readonly<ModalBodyProps>) {
   const [estado, setEstado] = useState<EstadoNotificacion>(0);
   const handleSetEstado = (newEstado: EstadoNotificacion) => {
     setEstado(newEstado);
     setPagina(1);
   };
+
+  useEffect(() => {
+    setPagina(1);
+  }, [actualSection]);
 
   const { t } = useTranslation();
 
@@ -64,87 +73,104 @@ export default function ModalBody({ lista }: Readonly<ModalBodyProps>) {
 
   return (
     <div className="px-2 ">
-      <div className="flex gap-3 justify-center">
-        <button
-          onClick={() => handleSetEstado(0)}
-          className={`my-4 py-0.5 rounded-md px-3 text-center   max-w-fit text-sm ${
-            estado === 0
-              ? 'border-slate-900 text-slate-900 border-2 font-semibold'
-              : 'border-slate-500 text-slate-500 border font-normal'
-          }`}
-        >
-          {t('modalState.all')}: {cantidadTotal}
-        </button>
-        <button
-          onClick={() => handleSetEstado(2)}
-          className={`my-4 py-0.5 rounded-md px-3 text-center border  max-w-fit text-sm ${
-            estado === 2
-              ? 'border-slate-900 text-slate-900 border-2 font-semibold'
-              : 'border-slate-500 text-slate-500 border font-normal'
-          }`}
-        >
-          {t('modalState.unread')}: {cantidadNoLeidos}
-        </button>
-        <button
-          onClick={() => handleSetEstado(1)}
-          className={`my-4 py-0.5 rounded-md px-3 text-center border  max-w-fit text-sm ${
-            estado === 1
-              ? 'border-slate-900 text-slate-900 border-2 font-semibold'
-              : 'border-slate-500 text-slate-500 border font-normal'
-          }`}
-        >
-          {t('modalState.read')}: {cantidadLeidos}
-        </button>
-      </div>
-      <div className=" ">
-        <ul className="space-y-4">
-          {itemsPagina.map((item, idx) => {
-            const bgClass = idx % 2 === 0 ? 'bg-gray-100' : 'bg-gray-50';
-            return (
-              <li key={item.id} className={`${bgClass} py-2 pl-2`}>
-                <div className="space-y-1">
-                  <p className="text-center">{item.mensaje}</p>
-                  <div className="flex justify-center gap-4">
-                    <button className="text-2xl transition-all hover:scale-110">
-                      <CiRead />
-                    </button>
-                    <button className="text-xl transition-all hover:scale-110">
-                      <RiArchiveDrawerLine />
-                    </button>
-                    <button className="text-xl transition-all hover:scale-110 hover:text-red-500">
-                      <MdDeleteOutline />
-                    </button>
-                    <div className="absolute right-20">
-                      <span className="text-xs text-slate-500">
-                        {formatearFecha(item.timestamp)}
-                      </span>
-                    </div>
-                  </div>
-                </div>
-              </li>
-            );
-          })}
-        </ul>
-        <div className="flex justify-center gap-2 mt-4 ">
-          <button
-            onClick={handleAnterior}
-            disabled={pagina === 1}
-            className="px-2 py-1 border rounded disabled:opacity-50"
-          >
-            <IoIosArrowBack />
-          </button>
-          <span className="px-2 py-1">
-            {pagina} / {totalPaginas}
-          </span>
-          <button
-            onClick={handleSiguiente}
-            disabled={pagina === totalPaginas}
-            className="px-2 py-1 border rounded disabled:opacity-50"
-          >
-            <IoIosArrowForward />
-          </button>
+      {itemsFiltrados.length === 0 ? (
+        <div className="grid  mt-20 text-center">
+          <p className="text-slate-700 text-lg w-2/3 mx-auto">
+            {t('noNotifications')}
+          </p>
         </div>
-      </div>
+      ) : (
+        <>
+          {' '}
+          <div className="flex gap-3 justify-center">
+            <button
+              onClick={() => handleSetEstado(0)}
+              className={`my-4 py-0.5 rounded-md px-3 text-center   max-w-fit text-sm ${
+                estado === 0
+                  ? 'border-slate-900 text-slate-900 border-2 font-semibold'
+                  : 'border-slate-500 text-slate-500 border font-normal'
+              }`}
+            >
+              {t('modalState.all')}: {cantidadTotal}
+            </button>
+            <button
+              onClick={() => handleSetEstado(2)}
+              className={`my-4 py-0.5 rounded-md px-3 text-center border  max-w-fit text-sm ${
+                estado === 2
+                  ? 'border-slate-900 text-slate-900 border-2 font-semibold'
+                  : 'border-slate-500 text-slate-500 border font-normal'
+              }`}
+            >
+              {t('modalState.unread')}: {cantidadNoLeidos}
+            </button>
+            <button
+              onClick={() => handleSetEstado(1)}
+              className={`my-4 py-0.5 rounded-md px-3 text-center border  max-w-fit text-sm ${
+                estado === 1
+                  ? 'border-slate-900 text-slate-900 border-2 font-semibold'
+                  : 'border-slate-500 text-slate-500 border font-normal'
+              }`}
+            >
+              {t('modalState.read')}: {cantidadLeidos}
+            </button>
+          </div>
+          <div className=" ">
+            <ul className="space-y-4">
+              {itemsPagina.map((item, idx) => {
+                const bgClass = idx % 2 === 0 ? 'bg-gray-100' : 'bg-gray-50';
+                return (
+                  <li key={item.id} className={`${bgClass} py-2 pl-2`}>
+                    <div className="space-y-1">
+                      <p
+                        className={`text-center ${
+                          item.leido ? 'text-slate-500' : 'text-slate-950'
+                        }`}
+                      >
+                        {item.mensaje}
+                      </p>
+                      <div className="flex justify-center gap-4">
+                        <button className="text-2xl transition-all hover:scale-110">
+                          {item.leido ? <CiUnread /> : <CiRead />}
+                        </button>
+                        <button className="text-xl transition-all hover:scale-110">
+                          <RiArchiveDrawerLine />
+                        </button>
+                        <button className="text-xl transition-all hover:scale-110 hover:text-red-500">
+                          <MdDeleteOutline />
+                        </button>
+                        <div className="absolute right-20">
+                          <span className="text-xs text-slate-500">
+                            {formatearFecha(item.timestamp)}
+                          </span>
+                        </div>
+                      </div>
+                    </div>
+                  </li>
+                );
+              })}
+            </ul>
+            <div className="flex justify-center gap-2 mt-4  absolute w-full bottom-0">
+              <button
+                onClick={handleAnterior}
+                disabled={pagina === 1}
+                className="px-2 py-1 border rounded disabled:opacity-50"
+              >
+                <IoIosArrowBack />
+              </button>
+              <span className="px-2 py-1">
+                {pagina} / {totalPaginas}
+              </span>
+              <button
+                onClick={handleSiguiente}
+                disabled={pagina === totalPaginas}
+                className="px-2 py-1 border rounded disabled:opacity-50"
+              >
+                <IoIosArrowForward />
+              </button>
+            </div>
+          </div>
+        </>
+      )}
     </div>
   );
 }

@@ -1,6 +1,7 @@
 {
   "welcome": "¡Bienvenido a la app!",
   "hello": "¡Hola, {{name}}!",
+  "noNotifications": "No tienes notificaciones en la carpeta de entrada.",
   "modalTitles": {
     "inbox": "Entradas",
     "archived": "Archivadas"

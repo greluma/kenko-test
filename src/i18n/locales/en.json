@@ -1,6 +1,7 @@
 {
   "welcome": "Welcome to the app!",
   "hello": "Hello, {{name}}!",
+  "noNotifications": "You have no notifications in your inbox.",
   "modalTitles": {
     "inbox": "Inbox",
     "archived": "Archived"

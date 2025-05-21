@@ -58,7 +58,7 @@ export default function MainModal({
           handleOpenFull={handleOpenFull}
           isFullOpen={isFullOpen}
         />
-        <ModalBody lista={fetchDB()} />
+        <ModalBody lista={fetchDB()} actualSection={actualSection} />
       </div>
     </section>
   );

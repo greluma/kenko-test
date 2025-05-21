@@ -1,6 +1,7 @@
 {
   "welcome": "Bienvenue dans l'application !",
   "hello": "Bonjour, {{name}} !",
+  "noNotifications": "Vous n'avez aucune notification dans votre boîte de réception.",
   "modalTitles": {
     "inbox": "Billets",
     "archived": "Archivé"
