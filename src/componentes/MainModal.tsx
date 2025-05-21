@@ -1,7 +1,11 @@
 import { useState } from 'react';
 import ModalHeader from './ModalHeader';
 import ModalBody from './ModalBody';
-import useNotificaciones from '../customHooks/useNotifications';
+import { useAppSelector } from '../store/hooks';
+import {
+  archivadasGlobal,
+  notificacionesGlobal,
+} from '../features/globalSlice';
 
 export default function MainModal({
   isModalOpen,
@@ -19,7 +23,8 @@ export default function MainModal({
     }
   };
 
-  const { notificaciones, archivadas } = useNotificaciones();
+  const notificaciones = useAppSelector(notificacionesGlobal);
+  const archivadas = useAppSelector(archivadasGlobal);
 
   const fetchDB = () => {
     if (actualSection === '0') {

@@ -3,10 +3,12 @@ import { BellBtnWidget, MainModal } from './componentes';
 // import TestWebSockets from './componentes/TestWebSockets';
 import { resetNotificationsCont } from './features/globalSlice';
 import { useAppDispatch } from './store/hooks';
+import useNotificaciones from './customHooks/useNotifications';
 
 export default function App() {
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
   const dispatch = useAppDispatch();
+  useNotificaciones();
 
   const openModal = () => {
     setIsModalOpen(true);

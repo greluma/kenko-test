@@ -48,9 +48,9 @@ export default function BellBtnWidget({
         dragTransition={{ bounceStiffness: 600, bounceDamping: 20 }}
         dragElastic={0.5}
         whileTap={{ cursor: 'grabbing' }}
-        className={`bg-k-blue-100 rounded-full transition-shadow grid items-center justify-center  ${
+        className={` rounded-full transition-shadow grid items-center justify-center  ${
           isDrag ? 'h-11 w-11 shadow-custom ' : 'h-12 w-12 '
-        }`}
+        } ${contador === 0 ? 'opacity-85 bg-slate-300' : 'bg-k-blue-100'}`}
       >
         <button
           className="cursor-grab"
@@ -61,7 +61,11 @@ export default function BellBtnWidget({
             <FaRegBell />
           </span>
         </button>
-        <span className="absolute -top-2 -right-2 bg-red-500 h-6 w-6 rounded-full grid items-center justify-center text-k-white text-sm">
+        <span
+          className={`absolute -top-2 -right-2 bg-red-500 h-6 w-6 rounded-full grid items-center justify-center text-k-white text-sm ${
+            contador === 0 ? 'hidden' : ''
+          }`}
+        >
           {contador}
         </span>
       </motion.div>
