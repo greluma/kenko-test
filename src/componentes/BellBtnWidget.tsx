@@ -1,6 +1,8 @@
 import { useEffect, useState } from 'react';
 import { motion, useDragControls, type PanInfo } from 'framer-motion';
 import { FaRegBell } from 'react-icons/fa6';
+import { useAppSelector } from '../store/hooks';
+import { contadorNotificacionesGlobal } from '../features/globalSlice';
 
 // ! Updates: Bell effect, constrains parameters, diferenciar evento onClick de drag y onMouseUp/Down
 
@@ -14,6 +16,7 @@ export default function BellBtnWidget({
   const controls = useDragControls();
   const [position, setPosition] = useState({ x: 0, y: 0 });
   const [isDrag, setIsDrag] = useState<boolean>(false);
+  const contador = useAppSelector(contadorNotificacionesGlobal);
 
   const handleDragEnd = (
     _: MouseEvent | TouchEvent | PointerEvent,
@@ -59,7 +62,7 @@ export default function BellBtnWidget({
           </span>
         </button>
         <span className="absolute -top-2 -right-2 bg-red-500 h-6 w-6 rounded-full grid items-center justify-center text-k-white text-sm">
-          2
+          {contador}
         </span>
       </motion.div>
     </div>

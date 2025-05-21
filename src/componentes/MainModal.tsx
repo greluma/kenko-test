@@ -1,8 +1,7 @@
 import { useState } from 'react';
 import ModalHeader from './ModalHeader';
 import ModalBody from './ModalBody';
-import archivadasData from '../bd_local/archivadas.json';
-import inboxData from '../bd_local/inbox.json';
+import useNotificaciones from '../customHooks/useNotifications';
 
 export default function MainModal({
   isModalOpen,
@@ -20,11 +19,13 @@ export default function MainModal({
     }
   };
 
+  const { notificaciones, archivadas } = useNotificaciones();
+
   const fetchDB = () => {
     if (actualSection === '0') {
-      return inboxData.bandeja_entrada;
+      return notificaciones;
     } else {
-      return archivadasData.archivadas;
+      return archivadas;
     }
   };
 

@@ -10,6 +10,7 @@ export interface NotificationsInterface {
   id: number;
   mensaje: string;
   leido: boolean;
+  timestamp: string;
 }
 // ! Se puede mejorar de forma tal que se seleccionen todos o varios mensajes. Se podría crear una papelera de reciclaje
 
@@ -55,6 +56,11 @@ export default function ModalBody({ lista }: Readonly<ModalBodyProps>) {
   const inicio = (pagina - 1) * porPagina;
   const fin = inicio + porPagina;
   const itemsPagina = itemsFiltrados.slice(inicio, fin);
+
+  function formatearFecha(timestamp: string) {
+    const fecha = new Date(timestamp);
+    return fecha.toLocaleDateString('es-ES');
+  }
 
   return (
     <div className="px-2 ">
@@ -108,6 +114,11 @@ export default function ModalBody({ lista }: Readonly<ModalBodyProps>) {
                     <button className="text-xl transition-all hover:scale-110 hover:text-red-500">
                       <MdDeleteOutline />
                     </button>
+                    <div className="absolute right-20">
+                      <span className="text-xs text-slate-500">
+                        {formatearFecha(item.timestamp)}
+                      </span>
+                    </div>
                   </div>
                 </div>
               </li>
