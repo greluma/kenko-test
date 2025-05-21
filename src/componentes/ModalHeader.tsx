@@ -1,4 +1,3 @@
-import { IoFilterSharp } from 'react-icons/io5';
 import { FaCheck } from 'react-icons/fa';
 import { GrLanguage } from 'react-icons/gr';
 import { IoClose } from 'react-icons/io5';
@@ -84,16 +83,6 @@ export default function ModalHeader({
             >
               <span>
                 <GrLanguage />
-              </span>
-            </button>
-            <button
-              className={`text-xl transition-all hover:scale-110 ${
-                isSelect === 2 && 'scale-125 hover:scale-125'
-              }`}
-              onClick={() => setIsSelect(2)}
-            >
-              <span>
-                <IoFilterSharp />
               </span>
             </button>
           </div>

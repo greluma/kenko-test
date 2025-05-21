@@ -4,5 +4,10 @@
   "modalTitles": {
     "inbox": "Entradas",
     "archived": "Archivadas"
+  },
+  "modalState": {
+    "read": "Leído",
+    "unread": "No Leído",
+    "all": "Todas"
   }
 }

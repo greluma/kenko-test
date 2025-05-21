@@ -1,11 +1,15 @@
 import { useState } from 'react';
 import ModalHeader from './ModalHeader';
+import ModalBody from './ModalBody';
+import archivadasData from '../bd_local/archivadas.json';
+import inboxData from '../bd_local/inbox.json';
 
 export default function MainModal({
   isModalOpen,
   closeModal,
 }: Readonly<{ isModalOpen: boolean; closeModal: () => void }>) {
   const [actualSection, setActualSection] = useState<string>('0');
+  // 0 entradas - 1 archivadas
 
   const [isFullOpen, setIsFullOpen] = useState<boolean>(false);
   const handleOpenFull = () => {
@@ -16,9 +20,16 @@ export default function MainModal({
     }
   };
 
+  const fetchDB = () => {
+    if (actualSection === '0') {
+      return inboxData.bandeja_entrada;
+    } else {
+      return archivadasData.archivadas;
+    }
+  };
+
   const handleSetModalSection = (e: React.MouseEvent<HTMLButtonElement>) => {
     const id = e.currentTarget.id;
-    console.log(id);
     return setActualSection(id);
   };
 
@@ -35,8 +46,8 @@ export default function MainModal({
         className={`${
           isFullOpen
             ? 'w-full h-full'
-            : 'sm:w-[80%] sm:h-[90%] md:w-[70%] md:h-[80%] lg:w-[70%] lg:h-[80%]'
-        } relative z-10 w-full h-full  m-auto bg-k-white  sm:rounded-md sm:shadow-xl md:shadow-2xl`}
+            : 'sm:w-[80%] sm:h-[90%] md:w-[70%] md:h-[90%] lg:w-[70%] lg:h-[95%]'
+        } relative overflow-scroll z-10 w-full h-full  m-auto bg-k-white  sm:rounded-md sm:shadow-xl md:shadow-2xl`}
       >
         {/* Header */}
         <ModalHeader
@@ -46,17 +57,7 @@ export default function MainModal({
           handleOpenFull={handleOpenFull}
           isFullOpen={isFullOpen}
         />
-        <div className="px-2">
-          <ul>
-            <li>Not 1</li>
-            <li>Not 2</li>
-            <li>Not 3</li>
-            <li>Not 4</li>
-            <li>Not 5</li>
-            <li>Not 6</li>
-            <li>Not 7</li>
-          </ul>
-        </div>
+        <ModalBody lista={fetchDB()} />
       </div>
     </section>
   );
