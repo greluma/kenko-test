@@ -6,7 +6,8 @@ import {
 } from '../features/globalSlice';
 import { useAppDispatch } from '../store/hooks';
 import { io, type Socket } from 'socket.io-client';
-import type { NotificationsInterface } from '../componentes/ModalBody';
+import type { NotificationsInterface } from '../componentes/modal/body/ModalBody';
+import sendNotificationToDesk from '../utils/sendNotificationToDesk';
 // ...otros imports...
 
 const useNotificaciones = () => {
@@ -24,8 +25,9 @@ const useNotificaciones = () => {
 
   useEffect(() => {
     socketRef.current = io(SOCKET_URL);
-
     socketRef.current.on('notificacion', (data: NotificationsInterface) => {
+      sendNotificationToDesk(data);
+
       dispatch(addNotificacion(data));
       dispatch(incrementNotificationsCont());
     });

@@ -1,6 +1,6 @@
 import { createSlice, type PayloadAction } from '@reduxjs/toolkit';
 import type { RootState } from '../store/store';
-import type { NotificationsInterface } from '../componentes/ModalBody';
+import type { NotificationsInterface } from '../componentes/modal/body/ModalBody';
 
 interface GlobalState {
   contadorNotificaciones: number;

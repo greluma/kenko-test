@@ -71,7 +71,7 @@ export default function ModalHeader({
       <h2 id="modal-title" className="sr-only">
         {t('title')}
       </h2>
-      <div className="relative sm:rounded-t-md flex justify-between items-center bg-k-blue-300 px-2 py-3 shadow-lg">
+      <div className="relative flex justify-between items-center bg-k-blue-300 px-2 py-3 shadow-lg z-20">
         <div className="text-xl  space-x-5 z-10">
           {sections.map((section) => {
             return (
@@ -122,8 +122,8 @@ export default function ModalHeader({
           </button>
         </div>
       </div>
-      <div ref={selectRefBtn2} className="absolute right-0">
-        {isSelect && <ModalSelect isSelect={isSelect} />}
+      <div ref={selectRefBtn2} className="absolute z-10 right-0">
+        <ModalSelect isSelect={isSelect} />
       </div>
     </div>
   );

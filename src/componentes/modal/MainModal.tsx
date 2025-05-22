@@ -8,6 +8,7 @@ import { useMemo, useCallback, useState, useRef, useEffect } from 'react';
 // Componentes
 import ModalHeader from './header/ModalHeader';
 import ModalBody from './body/ModalBody';
+import { AnimatePresence, motion } from 'framer-motion';
 
 interface MainModalProps {
   isModalOpen: boolean;
@@ -65,34 +66,56 @@ export default function MainModal({
   }, [isModalOpen, closeModal]);
 
   return (
-    <section
-      className={`${
-        isModalOpen ? '' : 'hidden'
-      } fixed inset-0 h-screen w-screen grid items-center`}
-      role="dialog"
-      aria-modal="true"
-      aria-labelledby="modal-title"
-    >
-      {/* Fondo con opacidad */}
-      <div className="absolute inset-0 bg-slate-500 opacity-40 pointer-events-none z-0"></div>
-      <div
-        ref={modalRef}
-        tabIndex={-1}
-        className={`${
-          isFullOpen
-            ? 'w-full h-full'
-            : 'sm:w-[80%] sm:h-[90%] md:w-[70%] md:h-[90%] lg:w-[70%] lg:h-[95%]'
-        } relative overflow-scroll z-10 m-auto bg-k-white sm:rounded-md sm:shadow-xl md:shadow-2xl`}
-      >
-        <ModalHeader
-          actualSection={actualSection}
-          handleSetModalSection={handleSetModalSection}
-          closeModal={closeModal}
-          handleOpenFull={handleOpenFull}
-          isFullOpen={isFullOpen}
-        />
-        <ModalBody listaDeNotif={listaDeNotif} actualSection={actualSection} />
-      </div>
-    </section>
+    <AnimatePresence>
+      {isModalOpen && (
+        <motion.section
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          transition={{ duration: 0.25, ease: 'easeInOut' }}
+          className="fixed inset-0 h-screen w-screen grid items-center"
+          role="dialog"
+          aria-modal="true"
+          aria-labelledby="modal-title"
+        >
+          {/* Fondo con opacidad */}
+          <div className="absolute inset-0 bg-slate-500 opacity-40 pointer-events-none z-0"></div>
+          {isModalOpen && (
+            <motion.div
+              layout
+              initial={{ opacity: 0, scale: 0.95 }}
+              animate={{ opacity: 1, scale: 1 }}
+              exit={{ opacity: 0, scale: 0.95 }}
+              transition={{ duration: 0.25, ease: 'easeInOut' }}
+              ref={modalRef}
+              tabIndex={-1}
+              className={`relative overflow-scroll z-10 m-auto bg-k-white sm:rounded-md sm:shadow-xl md:shadow-2xl`}
+              style={
+                isFullOpen
+                  ? { width: '100vw', height: '100vh' }
+                  : {
+                      width: '70vw',
+                      height: '90vh',
+                      maxWidth: '900px',
+                      maxHeight: '95vh',
+                    }
+              }
+            >
+              <ModalHeader
+                actualSection={actualSection}
+                handleSetModalSection={handleSetModalSection}
+                closeModal={closeModal}
+                handleOpenFull={handleOpenFull}
+                isFullOpen={isFullOpen}
+              />
+              <ModalBody
+                listaDeNotif={listaDeNotif}
+                actualSection={actualSection}
+              />
+            </motion.div>
+          )}
+        </motion.section>
+      )}
+    </AnimatePresence>
   );
 }
