@@ -83,7 +83,8 @@ export default function BodyLista({
                       onClick={(e) => {
                         const fullId =
                           e.currentTarget.parentElement?.parentElement
-                            ?.parentElement?.id;
+                            ?.parentElement?.parentElement?.id;
+
                         const id = fullId?.replace('itemList_', '');
 
                         if (id) {
@@ -98,7 +99,7 @@ export default function BodyLista({
                       onClick={(e) => {
                         const fullId =
                           e.currentTarget.parentElement?.parentElement
-                            ?.parentElement?.id;
+                            ?.parentElement?.parentElement?.id;
                         const id = fullId?.replace('itemList_', '');
 
                         if (id) {
@@ -121,7 +122,7 @@ export default function BodyLista({
                       onClick={(e) => {
                         const fullId =
                           e.currentTarget.parentElement?.parentElement
-                            ?.parentElement?.id;
+                            ?.parentElement?.parentElement?.id;
                         const id = fullId?.replace('itemList_', '');
 
                         if (id) {

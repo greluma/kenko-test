@@ -10,12 +10,16 @@ import type { NotificationsInterface } from '../componentes/modal/body/ModalBody
 import sendNotificationToDesk from '../utils/sendNotificationToDesk';
 // ...otros imports...
 
+// ! pasar a variable de entorno
+// const SOCKET_URL_LOCAL = 'http://192.168.1.132:3000';
+const SOCKET_URL_PRODUCTION = 'https://kenko-back-test.onrender.com';
+
 const useNotificaciones = () => {
   const dispatch = useAppDispatch();
-  const SOCKET_URL = 'http://localhost:3000';
+  console.log(SOCKET_URL_PRODUCTION);
 
   useEffect(() => {
-    fetch('http://localhost:3000/archivadas')
+    fetch(`${SOCKET_URL_PRODUCTION}/archivadas`)
       .then((res) => res.json())
       .then((data) => dispatch(setArchivadas(data.archivadas)))
       .catch((err) => console.error('Error:', err));
@@ -24,7 +28,7 @@ const useNotificaciones = () => {
   const socketRef = useRef<Socket | null>(null);
 
   useEffect(() => {
-    socketRef.current = io(SOCKET_URL);
+    socketRef.current = io(SOCKET_URL_PRODUCTION);
     socketRef.current.on('notificacion', (data: NotificationsInterface) => {
       sendNotificationToDesk(data);
 

@@ -89,17 +89,17 @@ export default function MainModal({
               transition={{ duration: 0.25, ease: 'easeInOut' }}
               ref={modalRef}
               tabIndex={-1}
-              className={`relative overflow-scroll z-10 m-auto bg-k-white sm:rounded-md sm:shadow-xl md:shadow-2xl`}
-              style={
+              className={`
+              relative overflow-scroll z-10 m-auto bg-k-white
+              w-screen h-screen
+              sm:rounded-md sm:shadow-xl md:shadow-2xl
+              
+              ${
                 isFullOpen
-                  ? { width: '100vw', height: '100vh' }
-                  : {
-                      width: '70vw',
-                      height: '90vh',
-                      maxWidth: '900px',
-                      maxHeight: '95vh',
-                    }
+                  ? 'w-screen h-screen'
+                  : 'sm:w-[70vw] sm:h-[90vh] sm:max-w-[900px] sm:max-h-[95vh]'
               }
+            `}
             >
               <ModalHeader
                 actualSection={actualSection}
