@@ -60,7 +60,7 @@ export default function ModalHeader({
   return (
     <div className="sm:rounded-t-md relative">
       <div className="relative sm:rounded-t-md flex justify-between items-center bg-k-blue-300 px-2 py-3 shadow-lg">
-        <div className="text-xl  space-x-5 ">
+        <div className="text-xl  space-x-5 z-10">
           {sections.map((section) => {
             return (
               <ModalSectionBtn

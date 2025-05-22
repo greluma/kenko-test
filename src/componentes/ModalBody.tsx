@@ -20,7 +20,6 @@ export interface NotificationsInterface {
   leido: boolean;
   timestamp: string;
 }
-// ! Se puede mejorar de forma tal que se seleccionen todos o varios mensajes. Se podría crear una papelera de reciclaje
 
 type EstadoNotificacion = 0 | 1 | 2;
 // 0-Todos , 1-Leidos, 2-No Leidos
@@ -203,8 +202,8 @@ export default function ModalBody({
                       >
                         <MdDeleteOutline />
                       </button>
-                      <div className="absolute right-20">
-                        <span className="text-xs text-slate-500">
+                      <div className="absolute right-2 lg:right-20">
+                        <span className="text-xs lg:text-sm text-slate-500">
                           {formatearFecha(item.timestamp)}
                         </span>
                       </div>
@@ -214,7 +213,7 @@ export default function ModalBody({
               );
             })}
           </ul>
-          <div className="flex justify-center gap-2 mt-4  absolute w-full bottom-0">
+          <div className="flex justify-center gap-2 my-1 py-1 bg-slate-50">
             <button
               onClick={handleAnterior}
               disabled={pagina === 1}
