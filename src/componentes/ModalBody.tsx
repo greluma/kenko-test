@@ -25,12 +25,12 @@ type EstadoNotificacion = 0 | 1 | 2;
 // 0-Todos , 1-Leidos, 2-No Leidos
 
 interface ModalBodyProps {
-  lista: NotificationsInterface[];
+  listaDeNotif: NotificationsInterface[];
   actualSection: string;
 }
 
 export default function ModalBody({
-  lista,
+  listaDeNotif,
   actualSection,
 }: Readonly<ModalBodyProps>) {
   const [estado, setEstado] = useState<EstadoNotificacion>(0);
@@ -56,10 +56,10 @@ export default function ModalBody({
     return lista;
   }
 
-  const itemsFiltrados = filtrarPorEstado(lista, estado);
-  const cantidadTotal = filtrarPorEstado(lista, 0).length;
-  const cantidadLeidos = filtrarPorEstado(lista, 1).length;
-  const cantidadNoLeidos = filtrarPorEstado(lista, 2).length;
+  const itemsFiltrados = filtrarPorEstado(listaDeNotif, estado);
+  const cantidadTotal = filtrarPorEstado(listaDeNotif, 0).length;
+  const cantidadLeidos = filtrarPorEstado(listaDeNotif, 1).length;
+  const cantidadNoLeidos = filtrarPorEstado(listaDeNotif, 2).length;
 
   // Paginación
   const [pagina, setPagina] = useState(1);

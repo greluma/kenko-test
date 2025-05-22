@@ -1,6 +1,7 @@
 {
   "welcome": "¡Bienvenido a la app!",
   "hello": "¡Hola, {{name}}!",
+  "title": "Panel de notificaciones",
   "noNotifications": "No tienes notificaciones en esta carpeta.",
   "modalTitles": {
     "inbox": "Entradas",
