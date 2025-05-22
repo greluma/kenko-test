@@ -73,6 +73,8 @@ export default function MainModal({
       aria-modal="true"
       aria-labelledby="modal-title"
     >
+      {/* Fondo con opacidad */}
+      <div className="absolute inset-0 bg-slate-500 opacity-40 pointer-events-none z-0"></div>
       <div
         ref={modalRef}
         tabIndex={-1}
