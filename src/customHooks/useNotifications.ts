@@ -28,7 +28,10 @@ const useNotificaciones = () => {
   const socketRef = useRef<Socket | null>(null);
 
   useEffect(() => {
-    socketRef.current = io(SOCKET_URL_PRODUCTION);
+    socketRef.current = io(SOCKET_URL_PRODUCTION, {
+      transports: ['websocket'],
+      secure: true,
+    });
     socketRef.current.on('notificacion', (data: NotificationsInterface) => {
       sendNotificationToDesk(data);
 
