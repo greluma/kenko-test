@@ -1,5 +1,5 @@
 import { useTranslation } from 'react-i18next';
-import type { Idiomas } from '../i18n';
+import type { Idiomas } from '../../../i18n';
 import { FaCheck } from 'react-icons/fa6';
 
 export default function ModalSelect({

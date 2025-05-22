@@ -1,13 +1,13 @@
 // Estado
-import { useAppSelector } from '../store/hooks';
+import { useAppSelector } from '../../store/hooks';
 import {
   archivadasGlobal,
   notificacionesGlobal,
-} from '../features/globalSlice';
+} from '../../features/globalSlice';
 import { useMemo, useCallback, useState, useRef, useEffect } from 'react';
 // Componentes
-import ModalHeader from './ModalHeader';
-import ModalBody from './ModalBody';
+import ModalHeader from './header/ModalHeader';
+import ModalBody from './body/ModalBody';
 
 interface MainModalProps {
   isModalOpen: boolean;
