@@ -18,11 +18,12 @@ import {
 import dateFormat from '../../../utils/dateFormat';
 // Framer Motion
 import { motion } from 'framer-motion';
-import { t } from 'i18next';
+import { useTranslation } from 'react-i18next';
 
 interface BodyListaProps {
   itemsPagina: NotificationsInterface[];
   actualSection: string;
+  isFullOpen: boolean;
 }
 
 const listVariants = {
@@ -47,13 +48,21 @@ const itemVariants = {
 export default function BodyLista({
   itemsPagina,
   actualSection,
+  isFullOpen,
 }: Readonly<BodyListaProps>) {
   const dispatch = useAppDispatch();
+  const { t } = useTranslation();
 
   return (
-    <div className="">
+    <div className=" grid ">
       <motion.ul
-        className="space-y-4"
+        className={`${
+          itemsPagina.length < 6
+            ? 'space-y-2'
+            : `grid md:grid-cols-2 ${
+                isFullOpen ? 'lg:grid-cols-3' : ''
+              } justify-items-start`
+        }`}
         variants={listVariants}
         initial="hidden"
         animate="visible"
@@ -65,7 +74,7 @@ export default function BodyLista({
             <motion.li
               id={`itemList_${item.id}`}
               key={item.id}
-              className={`${bgClass} py-2 pl-2`}
+              className={`${bgClass} pl-2 self-center`}
               variants={itemVariants}
             >
               <div className="space-y-1">

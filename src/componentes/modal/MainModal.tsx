@@ -88,15 +88,16 @@ export default function MainModal({
               transition={{ duration: 0.25, ease: 'easeInOut' }}
               ref={modalRef}
               tabIndex={-1}
+              // Eliminar overflow
               className={`
-              relative overflow-scroll z-10 m-auto bg-k-white
-              w-screen h-screen
+              relative   z-10 m-auto grid bg-k-white
+              w-screen h-screen grid-rows-[auto_1fr]
               sm:rounded-md sm:shadow-xl md:shadow-2xl
               
               ${
                 isFullOpen
                   ? 'w-screen h-screen'
-                  : 'sm:w-[70vw] sm:h-[90vh] sm:max-w-[900px] sm:max-h-[95vh]'
+                  : 'sm:w-[70vw] sm:h-[90vh] sm:max-w-[900px] sm:max-h-[90vh]'
               }
             `}
             >
@@ -110,6 +111,7 @@ export default function MainModal({
               <ModalBody
                 listaDeNotif={listaDeNotif}
                 actualSection={actualSection}
+                isFullOpen={isFullOpen}
               />
             </motion.div>
           )}

@@ -1,8 +1,9 @@
 import { useEffect, useState, useMemo, useCallback } from 'react';
-import { useTranslation } from 'react-i18next';
 import BodyFilters from './BodyFilters';
 import BodyLista from './BodyLista';
 import { IoIosArrowBack, IoIosArrowForward } from 'react-icons/io';
+import NoMensajes from './NoMensajes';
+import usePorPagina from '../../../customHooks/usePorPagina';
 
 export interface NotificationsInterface {
   id: number;
@@ -16,6 +17,7 @@ export type EstadoNotificacion = 0 | 1 | 2;
 interface ModalBodyProps {
   listaDeNotif: NotificationsInterface[];
   actualSection: string;
+  isFullOpen: boolean;
 }
 
 // Función fuera del componente
@@ -32,10 +34,10 @@ function filtrarPorEstado(
 export default function ModalBody({
   listaDeNotif,
   actualSection,
+  isFullOpen,
 }: Readonly<ModalBodyProps>) {
   const [estado, setEstado] = useState<EstadoNotificacion>(0);
   const [pagina, setPagina] = useState(1);
-  const { t } = useTranslation();
 
   const handleSetEstado = useCallback((newEstado: EstadoNotificacion) => {
     setEstado(newEstado);
@@ -66,7 +68,7 @@ export default function ModalBody({
     }, [listaDeNotif, estado]);
 
   // Paginación
-  const porPagina = 5;
+  const porPagina = usePorPagina(isFullOpen);
   const totalPaginas = Math.max(
     1,
     Math.ceil(itemsFiltrados.length / porPagina)
@@ -88,23 +90,25 @@ export default function ModalBody({
   );
 
   return (
-    <div className="px-2 ">
+    <div className="px-2 pb-2 sm:rounded-b-md grid  grid-rows-[auto_1fr_auto]">
       <BodyFilters
         handleSetEstado={handleSetEstado}
         estado={estado}
         totales={{ cantidadTotal, cantidadNoLeidos, cantidadLeidos }}
       />
-      {itemsFiltrados.length === 0 ? (
-        <div className="grid  mt-20 text-center">
-          <p className="text-slate-700 text-lg w-2/3 mx-auto">
-            {t('noNotifications')}
-          </p>
-        </div>
-      ) : (
-        <BodyLista itemsPagina={itemsPagina} actualSection={actualSection} />
-      )}
+      <div className=" grid">
+        {itemsFiltrados.length === 0 ? (
+          <NoMensajes />
+        ) : (
+          <BodyLista
+            itemsPagina={itemsPagina}
+            actualSection={actualSection}
+            isFullOpen={isFullOpen}
+          />
+        )}
+      </div>
       {/* Pagination */}
-      <div className="flex justify-center gap-2 my-4 py-1 bg-slate-50 ">
+      <div className="flex justify-center gap-2  bg-slate-50 ">
         <button
           onClick={handleAnterior}
           disabled={pagina === 1}

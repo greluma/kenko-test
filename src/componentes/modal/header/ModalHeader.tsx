@@ -74,7 +74,7 @@ export default function ModalHeader({
       <h2 id="modal-title" className="sr-only">
         {t('title')}
       </h2>
-      <div className="relative flex justify-between items-center bg-k-blue-300 px-2 py-3 shadow-lg z-20">
+      <div className="relative flex justify-between sm:rounded-t-md items-center bg-k-blue-300 px-2 py-3 shadow-lg z-20">
         <div className="text-xl  space-x-5  z-10">
           {sections.map((section) => {
             return (
