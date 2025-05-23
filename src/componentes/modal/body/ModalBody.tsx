@@ -108,7 +108,9 @@ export default function ModalBody({
         <button
           onClick={handleAnterior}
           disabled={pagina === 1}
-          className="px-2 py-1 border rounded disabled:opacity-50"
+          className={`px-2 py-1  border rounded disabled:opacity-50 ${
+            pagina === 1 ? '' : 'cursor-pointer'
+          }`}
         >
           <IoIosArrowBack />
         </button>
@@ -118,7 +120,9 @@ export default function ModalBody({
         <button
           onClick={handleSiguiente}
           disabled={pagina === totalPaginas}
-          className="px-2 py-1 border rounded disabled:opacity-50"
+          className={`px-2 py-1  border rounded disabled:opacity-50 ${
+            pagina === totalPaginas ? '' : 'cursor-pointer'
+          }`}
         >
           <IoIosArrowForward />
         </button>

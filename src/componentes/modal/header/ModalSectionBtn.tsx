@@ -21,7 +21,7 @@ const ModalSectionBtn = React.memo(function ModalSectionBtn({
       id={id}
       aria-pressed={isActive}
       aria-current={isActive ? 'true' : undefined}
-      className={`relative after:content-[''] after:absolute after:left-1/2 after:transform after:-translate-x-1/2 after:translate-y-2 after:bottom-0 after:w-8 after:border-b-[2.5px] transition-colors ${
+      className={`relative after:content-[''] after:absolute after:left-1/2 after:transform after:-translate-x-1/2 after:translate-y-2 after:bottom-0 after:w-8 after:border-b-[2.5px] transition-colors cursor-pointer ${
         isActive
           ? 'after:border-slate-800 -translate-y-1'
           : 'after:border-b-[0px] hover:after:border-b-[2.5px] after:border-k-blue-300 hover:after:border-slate-600'

@@ -79,7 +79,7 @@ export default function BodyLista({
                   <div className="flex-1"></div>
                   <div className="flex gap-4 flex-1 justify-center">
                     <button
-                      className="text-2xl transition-all hover:scale-110"
+                      className="text-2xl cursor-pointer transition-all hover:scale-110"
                       onClick={(e) => {
                         const fullId =
                           e.currentTarget.parentElement?.parentElement
@@ -95,7 +95,7 @@ export default function BodyLista({
                       {item.leido ? <CiUnread /> : <CiRead />}
                     </button>
                     <button
-                      className="text-xl transition-all hover:scale-110"
+                      className="text-xl cursor-pointer transition-all hover:scale-110"
                       onClick={(e) => {
                         const fullId =
                           e.currentTarget.parentElement?.parentElement
@@ -129,7 +129,7 @@ export default function BodyLista({
                           dispatch(eliminarNotificacion(id));
                         }
                       }}
-                      className="text-xl transition-all hover:scale-110 hover:text-red-500"
+                      className="text-xl cursor-pointer transition-all hover:scale-110 hover:text-red-500"
                     >
                       <MdDeleteOutline />
                     </button>

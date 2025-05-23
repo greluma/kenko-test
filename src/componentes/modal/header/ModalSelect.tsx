@@ -40,7 +40,7 @@ export default function ModalSelect({
                   role="menuitem"
                   aria-current={i18n.language === code ? 'true' : undefined}
                   tabIndex={0}
-                  className="w-full text-left"
+                  className="w-full text-left cursor-pointer"
                 >
                   <div className="flex items-center gap-2">
                     <span>{label}</span>

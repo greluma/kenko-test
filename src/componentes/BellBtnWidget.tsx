@@ -62,73 +62,72 @@ export default function BellBtnWidget({
   const DRAG_THRESHOLD = 5;
 
   return (
-    <div className={`${isModalOpen ? 'hidden' : ''}`}>
-      <motion.div
-        onPointerDown={(e) => {
-          setPointerDownPos({ x: e.clientX, y: e.clientY });
-          controls.start(e);
-        }}
-        onPointerUp={(e) => {
-          setIsDrag(false);
-          if (
-            pointerDownPos &&
-            Math.abs(e.clientX - pointerDownPos.x) < DRAG_THRESHOLD &&
-            Math.abs(e.clientY - pointerDownPos.y) < DRAG_THRESHOLD
-          ) {
-            openModal();
-          }
-          setPointerDownPos(null);
-        }}
-        onDragStart={() => setIsDrag(true)}
-        drag
-        dragControls={controls}
-        dragMomentum={false}
-        onDragEnd={handleDragEnd}
-        animate={{ x: position.x, y: position.y }}
-        dragTransition={{ bounceStiffness: 600, bounceDamping: 20 }}
-        dragElastic={0.5}
-        whileTap={{ cursor: 'grabbing' }}
-        className={` rounded-full transition-shadow grid items-center justify-center  ${
-          isDrag ? 'h-11 w-11 shadow-custom ' : 'h-12 w-12 '
-        } ${contador === 0 ? 'opacity-85 bg-slate-300' : 'bg-k-blue-100'}`}
-        role="button"
-        aria-label="Abrir panel de notificaciones"
-        tabIndex={0}
-        onKeyDown={(e) => {
-          if (e.key === 'Enter' || e.key === ' ') {
-            openModal();
-          }
-        }}
-      >
-        <div className="">
-          <span className="text-3xl text-k-blue-800 grid ">
-            <motion.span
-              animate={
-                isShaking
-                  ? { rotate: [0, -25, 20, -15, 10, -5, 0] }
-                  : { rotate: 0 }
-              }
-              transition={
-                isShaking
-                  ? { duration: 2, times: [0, 0.15, 0.3, 0.5, 0.7, 0.85, 1] }
-                  : {}
-              }
-              style={{ display: 'inline-block' }}
-            >
-              <FaRegBell />
-            </motion.span>
-          </span>
-        </div>
-        <span
-          aria-live="polite"
-          aria-atomic="true"
-          className={`absolute -top-2 -right-2 bg-red-500 h-6 w-6 rounded-full grid items-center justify-center text-k-white text-sm ${
-            contador === 0 ? 'hidden' : ''
-          }`}
-        >
-          {contador}
+    <motion.button
+      onPointerDown={(e) => {
+        setPointerDownPos({ x: e.clientX, y: e.clientY });
+        controls.start(e);
+      }}
+      onPointerUp={(e) => {
+        setIsDrag(false);
+        if (
+          pointerDownPos &&
+          Math.abs(e.clientX - pointerDownPos.x) < DRAG_THRESHOLD &&
+          Math.abs(e.clientY - pointerDownPos.y) < DRAG_THRESHOLD
+        ) {
+          openModal();
+        }
+        setPointerDownPos(null);
+      }}
+      onDragStart={() => setIsDrag(true)}
+      drag
+      dragControls={controls}
+      dragMomentum={false}
+      onDragEnd={handleDragEnd}
+      animate={{ x: position.x, y: position.y }}
+      dragTransition={{ bounceStiffness: 600, bounceDamping: 20 }}
+      dragElastic={0.5}
+      whileTap={{ cursor: 'grabbing' }}
+      className={`cursor-pointer rounded-full transition-shadow grid items-center justify-center  ${
+        isDrag ? 'h-11 w-11 shadow-custom ' : 'h-12 w-12 '
+      } ${contador === 0 ? 'opacity-85 bg-slate-300' : 'bg-k-blue-100'} ${
+        isModalOpen ? 'hidden' : ''
+      }`}
+      aria-label="Abrir panel de notificaciones"
+      tabIndex={0}
+      onKeyDown={(e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          openModal();
+        }
+      }}
+    >
+      <div className="">
+        <span className="text-3xl text-k-blue-800 grid ">
+          <motion.span
+            animate={
+              isShaking
+                ? { rotate: [0, -25, 20, -15, 10, -5, 0] }
+                : { rotate: 0 }
+            }
+            transition={
+              isShaking
+                ? { duration: 2, times: [0, 0.15, 0.3, 0.5, 0.7, 0.85, 1] }
+                : {}
+            }
+            style={{ display: 'inline-block' }}
+          >
+            <FaRegBell />
+          </motion.span>
         </span>
-      </motion.div>
-    </div>
+      </div>
+      <span
+        aria-live="polite"
+        aria-atomic="true"
+        className={`absolute -top-2 -right-2 bg-red-500 h-6 w-6 rounded-full grid items-center justify-center text-k-white text-sm ${
+          contador === 0 ? 'hidden' : ''
+        }`}
+      >
+        {contador}
+      </span>
+    </motion.button>
   );
 }

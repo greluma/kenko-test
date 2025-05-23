@@ -88,7 +88,7 @@ export default function ModalHeader({
         <div className="space-x-5 flex text-lg items-center">
           <div className="space-x-5 flex items-center" ref={selectRefBtn1}>
             <button
-              className={`transition-all hover:scale-110 ${
+              className={`transition-all cursor-pointer hover:scale-110 ${
                 isSelect && 'scale-125 hover:scale-125'
               }`}
               onClick={() => setIsSelect(true)}
@@ -103,7 +103,7 @@ export default function ModalHeader({
             </button>
           </div>
           <button
-            className={`text-xl transition-all hover:scale-110 hidden sm:block`}
+            className={`text-xl transition-all cursor-pointer hover:scale-110 hidden sm:block`}
             onClick={handleOpenFull}
             aria-label={isFullOpen ? 'Minimizar modal' : 'Maximizar modal'}
             type="button"
@@ -111,7 +111,7 @@ export default function ModalHeader({
             <span>{isFullOpen ? <BiCollapseAlt /> : <BiExpandAlt />}</span>
           </button>
           <button
-            className={`text-xl transition-all hover:text-red-500 hover:scale-110`}
+            className={`text-xl cursor-pointer transition-all hover:text-red-500 hover:scale-110`}
             onClick={closeModal}
             aria-label={'Cerrar modal'}
             type="button"
