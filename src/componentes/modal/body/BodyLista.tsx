@@ -18,6 +18,7 @@ import {
 import dateFormat from '../../../utils/dateFormat';
 // Framer Motion
 import { motion } from 'framer-motion';
+import { t } from 'i18next';
 
 interface BodyListaProps {
   itemsPagina: NotificationsInterface[];
@@ -80,6 +81,7 @@ export default function BodyLista({
                   <div className="flex gap-4 flex-1 justify-center">
                     <button
                       className="text-2xl cursor-pointer transition-all hover:scale-110"
+                      title={`${item.leido ? t('unread') : t('read')}`}
                       onClick={(e) => {
                         const fullId =
                           e.currentTarget.parentElement?.parentElement
@@ -96,6 +98,9 @@ export default function BodyLista({
                     </button>
                     <button
                       className="text-xl cursor-pointer transition-all hover:scale-110"
+                      title={`${
+                        actualSection === '0' ? t('arch') : t('darch')
+                      }`}
                       onClick={(e) => {
                         const fullId =
                           e.currentTarget.parentElement?.parentElement
@@ -130,6 +135,7 @@ export default function BodyLista({
                         }
                       }}
                       className="text-xl cursor-pointer transition-all hover:scale-110 hover:text-red-500"
+                      title={t('delete')}
                     >
                       <MdDeleteOutline />
                     </button>

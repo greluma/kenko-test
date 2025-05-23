@@ -74,7 +74,6 @@ export default function MainModal({
           exit={{ opacity: 0 }}
           transition={{ duration: 0.25, ease: 'easeInOut' }}
           className="fixed inset-0 h-screen w-screen grid items-center"
-          role="dialog"
           aria-modal="true"
           aria-labelledby="modal-title"
         >

@@ -1,6 +1,15 @@
 {
   "welcome": "Welcome to the app!",
   "hello": "Hello, {{name}}!",
+  "lang": "Change Language",
+  "max": "Maximize Window",
+  "min": "Minimize Window",
+  "close": "Close Window",
+  "arch": "Archive",
+  "darch": "Unarchive",
+  "read": "Mark as read",
+  "unread": "Mark as unread",
+  "delete": "Delete item",
   "title": "Notifications panel",
   "noNotifications": "You have no notifications in this folder.",
   "modalTitles": {

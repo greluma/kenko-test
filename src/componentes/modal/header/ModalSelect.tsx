@@ -5,7 +5,8 @@ import { motion, AnimatePresence } from 'framer-motion'; // <-- Agrega esto
 
 export default function ModalSelect({
   isSelect,
-}: Readonly<{ isSelect: boolean }>) {
+  handleIsSelect,
+}: Readonly<{ isSelect: boolean; handleIsSelect: () => void }>) {
   const { i18n } = useTranslation();
 
   const idiomas: { code: Idiomas; label: string }[] = [
@@ -16,6 +17,7 @@ export default function ModalSelect({
 
   const changeLanguage = (lang: Idiomas) => {
     i18n.changeLanguage(lang);
+    handleIsSelect();
   };
 
   return (

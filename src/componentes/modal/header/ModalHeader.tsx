@@ -35,6 +35,9 @@ export default function ModalHeader({
   // Estado local para saber si el select de idiomas esta activo
   const [isSelect, setIsSelect] = useState<boolean>(false);
 
+  const handleIsSelect = () => {
+    setIsSelect(!isSelect);
+  };
   // Secciones del Modal
   const sections: ModalSections[] = useMemo(
     () => [
@@ -72,7 +75,7 @@ export default function ModalHeader({
         {t('title')}
       </h2>
       <div className="relative flex justify-between items-center bg-k-blue-300 px-2 py-3 shadow-lg z-20">
-        <div className="text-xl  space-x-5 z-10">
+        <div className="text-xl  space-x-5  z-10">
           {sections.map((section) => {
             return (
               <ModalSectionBtn
@@ -92,10 +95,11 @@ export default function ModalHeader({
                 isSelect && 'scale-125 hover:scale-125'
               }`}
               onClick={() => setIsSelect(true)}
-              aria-label={'Acceder al selector de idioma'}
+              aria-label={t('lang')}
               aria-expanded={isSelect}
               aria-haspopup="listbox"
               type="button"
+              title={`${t('lang')}`}
             >
               <span>
                 <GrLanguage />
@@ -105,16 +109,18 @@ export default function ModalHeader({
           <button
             className={`text-xl transition-all cursor-pointer hover:scale-110 hidden sm:block`}
             onClick={handleOpenFull}
-            aria-label={isFullOpen ? 'Minimizar modal' : 'Maximizar modal'}
+            aria-label={isFullOpen ? t('min') : t('max')}
             type="button"
+            title={`${isFullOpen ? t('min') : t('max')}`}
           >
             <span>{isFullOpen ? <BiCollapseAlt /> : <BiExpandAlt />}</span>
           </button>
           <button
             className={`text-xl cursor-pointer transition-all hover:text-red-500 hover:scale-110`}
             onClick={closeModal}
-            aria-label={'Cerrar modal'}
+            aria-label={t('close')}
             type="button"
+            title={t('close')}
           >
             <span>
               <IoClose />
@@ -123,7 +129,7 @@ export default function ModalHeader({
         </div>
       </div>
       <div ref={selectRefBtn2} className="absolute z-10 right-0">
-        <ModalSelect isSelect={isSelect} />
+        <ModalSelect isSelect={isSelect} handleIsSelect={handleIsSelect} />
       </div>
     </div>
   );

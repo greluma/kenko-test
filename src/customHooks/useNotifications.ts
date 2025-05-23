@@ -16,7 +16,6 @@ const SOCKET_URL_PRODUCTION = 'https://kenko-back-test.onrender.com';
 
 const useNotificaciones = () => {
   const dispatch = useAppDispatch();
-  console.log(SOCKET_URL_PRODUCTION);
 
   useEffect(() => {
     fetch(`${SOCKET_URL_PRODUCTION}/archivadas`)
