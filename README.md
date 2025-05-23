@@ -47,7 +47,7 @@ Kenko Test FrontEnd es una aplicación web desarrollada por [Manuel Rodriguez Pr
 
 ### Video explicativo en Youtube
 
-- [Acceder al video](https://kenko-test-front.netlify.app/)
+- [Acceder al video](https://youtu.be/Ifwaz7X9f8k?si=Duiwl-lnJiDog2jy)
 
 ---
 
