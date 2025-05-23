@@ -90,7 +90,7 @@ export default function MainModal({
               tabIndex={-1}
               // Eliminar overflow
               className={`
-              relative   z-10 m-auto grid bg-k-white
+              relative overflow-hidden  z-10 m-auto grid bg-k-white
               w-screen h-screen grid-rows-[auto_1fr]
               sm:rounded-md sm:shadow-xl md:shadow-2xl
               

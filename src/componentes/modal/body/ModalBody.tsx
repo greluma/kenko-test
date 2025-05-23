@@ -90,13 +90,13 @@ export default function ModalBody({
   );
 
   return (
-    <div className="px-2 pb-2 sm:rounded-b-md grid  grid-rows-[auto_1fr_auto]">
+    <div className="px-2 pb-2 overflow-scroll sm:rounded-b-md grid  grid-rows-[auto_1fr_auto]">
       <BodyFilters
         handleSetEstado={handleSetEstado}
         estado={estado}
         totales={{ cantidadTotal, cantidadNoLeidos, cantidadLeidos }}
       />
-      <div className=" grid">
+      <div className=" grid ">
         {itemsFiltrados.length === 0 ? (
           <NoMensajes />
         ) : (
